@@ -93,7 +93,7 @@ if($_POST){
                     // Manejo de la imagen
                     $fileName = $_FILES['logotipo']['name'];
                     $fileTmpName = $_FILES['logotipo']['tmp_name'];
-                    $uploadDirectory = '../assets/img_equipo/';
+                    $uploadDirectory = '../img_equipo/';
                 
                     // Verificar y crear directorio si no existe
                     if (!is_dir($uploadDirectory)) {
