@@ -137,6 +137,22 @@ if($_POST){
                     echo json_encode($valido);
                     break;
                 
+                    case "deleteE":
+                        $idequipo=$_POST['idequipo'];
+
+                        $sql="DELETE FROM equipo WHERE idequipo=$idequipo";
+                        if($cx->query($sql)){
+                           $valido['success']=true;
+                           $valido['mensaje']="EL EQUIPO SE ELIMINÓ CORRECTAMENTE";
+                        }else{
+                            $valido['success']=false;
+                           $valido['mensaje']="ERROR AL ELIMINAR EN BD"; 
+                        }
+                    
+                 
+                    echo json_encode($valido);
+                    
+                        break;
                         
     }
     
