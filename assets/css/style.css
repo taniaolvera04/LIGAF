@@ -9,6 +9,14 @@ img{
     margin: auto;
 }
 
+#elogotipo-preview{
+    height:110px;
+    border:1px solid white;
+    border-radius:100%;
+    margin: auto;
+}
+
+
 .btn-primary{
 width: 120px;
 height: 55px;

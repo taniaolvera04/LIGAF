@@ -51,21 +51,38 @@ if($_POST){
             case "cargarE":
                 $result = $cx->query("SELECT * FROM equipo ORDER BY idequipo DESC");
                 $rows = array();
-            
+    
                 while ($row = $result->fetch_assoc()) {
                     $valido = array();
                     $valido['logotipo'] = $row['logotipo'];
                     $valido['nombree'] = $row['nombree'];
                     $valido['cantidad'] = $row['cantidad'];
-                    
-                    $rows[] = $valido; // Agrega el array $valido al array $rows
+                    $valido['idequipo'] = $row['idequipo'];
+                    $rows[] = $valido;
                 }
-            
-                echo json_encode($rows); // Devuelve el array en formato JSON
+    
+                echo json_encode($rows);
                 break;
-            
+    
+            case "selectE":
+                $valido['success'] = array('success' => false, 'mensaje' => "", 'idequipo' => "", 'nombree' => "", 'cantidad' => "", 'logotipo' => "");
+                $idequipo = (int)$_POST['idequipo'];
+    
+                $sql = "SELECT idequipo, nombree, cantidad, logotipo FROM equipo WHERE idequipo=$idequipo";
+                $res = $cx->query($sql);
+    
+                if ($row = $res->fetch_array()) {
+                    $valido['success'] = true;
+                    $valido['mensaje'] = "SE ENCONTRÓ EQUIPO";
+                    $valido['idequipo'] = $row[0];
+                    $valido['nombree'] = $row[1];
+                    $valido['cantidad'] = $row[2];
+                    $valido['logotipo'] = $row[3];
+                }
+    
+                echo json_encode($valido);
+                break;
 
-            
                 
                 case "saveperfil":
                     header('Content-Type: application/json; charset=utf-8');
