@@ -84,34 +84,54 @@ if($_POST){
                 break;
 
                 
-                case "saveperfil":
-                    header('Content-Type: application/json; charset=utf-8');
-                    $valido = ['success' => false, 'mensaje' => '', 'foto' => ''];
-                    $a = $_POST['nombre'];
-                    $c = $_POST['email'];
-                    $fileName = $_FILES['foto']['name'];
-                    $fileTmpName = $_FILES['foto']['tmp_name'];
-                    $uploadDirectory = '../img_profile/';
+                case "updateE":
+                    
+                    $idequipo = $_POST['idequipo'] ?? '';
+                    $a = $_POST['nombree'] ?? '';
+                    $b = $_POST['cantidad'] ?? 0;
                 
+                    // Manejo de la imagen
+                    $fileName = $_FILES['logotipo']['name'];
+                    $fileTmpName = $_FILES['logotipo']['tmp_name'];
+                    $uploadDirectory = '../assets/img_equipo/';
+                
+                    // Verificar y crear directorio si no existe
                     if (!is_dir($uploadDirectory)) {
                         mkdir($uploadDirectory, 0755, true);
                     }
                 
-                    $filePath = $uploadDirectory . basename($fileName);
+                    // Inicializar la ruta del archivo
+                    $filePath = '';
                 
-                    if (move_uploaded_file($fileTmpName, $filePath)) {
-                        $check = "UPDATE usuario SET nombre='$a', foto='$filePath' WHERE email='$c'";
-                        if ($cx->query($check) === TRUE) {
-                            $valido['success'] = true;
-                            $valido['mensaje'] = "SE GUARDÓ CORRECTAMENTE";
-                            $valido['foto'] = $filePath;
-                        } else {
-                            $valido['success'] = false;
-                            $valido['mensaje'] = "ALGO SALIÓ MAL EN LA ACTUALIZACIÓN";
+                    // Mover la imagen subida al directorio deseado si se proporciona una nueva imagen
+                    if (!empty($fileName)) {
+                        $filePath = $uploadDirectory . basename($fileName);
+                
+                        if (!move_uploaded_file($fileTmpName, $filePath)) {
+                            $valido['mensaje'] = "Error al subir la imagen del equipo";
+                            echo json_encode($valido);
+                            exit;
                         }
                     } else {
-                        $valido['success'] = false;
-                        $valido['mensaje'] = "ALGO SALIÓ MAL AL SUBIR LA IMAGEN";
+                        // Si no se proporciona una nueva imagen, buscar la actual
+                        $currentImageQuery = "SELECT logotipo FROM equipo WHERE idequipo = $idequipo";
+                        $currentImageResult = $cx->query($currentImageQuery);
+                        $currentImage = ($currentImageResult && $row = $currentImageResult->fetch_array()) ? $row['logotipo'] : '';
+                        $filePath = $currentImage; // Mantener la imagen actual
+                    }
+                
+                    // Actualizar los datos del álbum en la base de datos
+                    $sqlUpdateAlbum = "UPDATE equipo SET 
+                                        nombree = '$a',
+                                        cantidad = $b,
+                                        logotipo = '$filePath'
+                                        WHERE idequipo = $idequipo";
+                
+                    if ($cx->query($sqlUpdateAlbum)) {
+                        $valido['success'] = true;
+                        $valido['mensaje'] = "EQUIPO ACTUALIZADO CORRECTAMENTE";
+                    } else {
+                        $valido['mensaje'] = "Error al actualizar el equipo en la base de datos: " . $cx->error;
                     }
                 
                     echo json_encode($valido);

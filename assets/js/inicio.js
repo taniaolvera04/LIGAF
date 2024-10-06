@@ -105,10 +105,11 @@ const cargarEquipo = async () => {
         </button>
 
                 <div class="card-body text-center"> 
-                    <img src="assets/${e.logotipo}" width="70px" height="70px" style="border-radius: 100%;"><br>
+                    <img src="assets/${e.logotipo}" width="70px" height="70px" style="border-radius: 10%;"><br>
                     <p style="margin: 0;">NOMBRE:</p> 
                     <b class="mx-1" style="display: block; margin: 0;">"${e.nombree.toUpperCase()}"</b> 
-                    <small style="display: block; margin: 0;">CANTIDAD DE JUGADORES: ${e.cantidad}</small> 
+                    <small style="display: block; margin: 0;">CANTIDAD DE JUGADORES:</small>
+                    <b class="mx-1" style="display: block; margin: 0;">${e.cantidad}</b>  
                 </div>
             </div>
         </div>
