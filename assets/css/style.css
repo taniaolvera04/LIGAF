@@ -1,0 +1,32 @@
+img{
+    border-radius: 50%;
+}
+
+#logotipo-preview{
+    height:110px;
+    border:1px solid white;
+    border-radius:100%;
+    margin: auto;
+}
+
+.btn-primary{
+width: 120px;
+height: 55px;
+border-radius: 15px;
+background: #ff93b7;
+color: rgb(255, 255, 255);
+font-size: inherit;
+font-weight: bolder;
+border: none;
+cursor: pointer;
+outline: none;
+box-shadow: 0 2px 5px rgba(255, 37, 146, 0.637);
+}
+
+.btn-primary:hover {
+transform: scale(1.1);
+background: #ff6296;
+font-size: inherit;
+transition: 1s ease all;
+box-shadow: 0 2px 5px rgba(168, 18, 93, 0.637);
+}
