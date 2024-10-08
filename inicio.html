@@ -26,7 +26,7 @@
 </button>
 
 
-<button type="submit" class="btn btn-primary btn-block mx-2"> JUGADOR  
+<button type="submit" class="btn btn-primary btn-block mx-2" onclick="cargarJugador()"> JUGADOR  
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0"/>
   </svg>
@@ -55,49 +55,6 @@
 
 
 
-<!--MODAL PARA AGREGAR UN EQUIPO-->
-
-<div class="modal fade" id="addEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-ls">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h1 class="modal-title fs-5 w-100 m-auto" id="exampleModalLabel">REGISTRO DE EQUIPO</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <form enctype="multipart/form-data">
-                  <div class="mb-2">
-                      <label class="form-label">NOMBRE DE EQUIPO</label>
-                      <input type="text" class="form-control text-center" id="nombree">
-                  </div>
-                  <div class="mb-2">
-                      <label class="form-label">CANTIDAD JUGADORES</label>
-                      <input type="number" class="form-control text-center" id="cantidad">
-                  </div>
-                  <div class="mb-2">
-                      <label class="form-label">FOTO</label>
-                      <input type="file" class="form-control" id="logotipo" onchange="previewImage()"><br>
-                      <img id="logotipo-preview" src="assets/img/balon.png">
-                  </div>
-              </form>                
-          </div>
-
-          <div class="modal-footer">
-              <button type="button" class="btn btn-success" onclick="eRegistrar()">REGISTRAR
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
-                      <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z"/>
-                      <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z"/>
-                  </svg>
-              </button>
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCELAR
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                  </svg>
-              </button>              
-          </div>
-      </div>
-  </div>
-</div>
 
 
 
@@ -149,10 +106,85 @@
 
 
 
+
+
+<!--MODAL PARA AGREGAR UN JUGADOR-->
+
+<div class="modal fade" id="addJugador" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-ls">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 w-100 m-auto" id="exampleModalLabel">REGISTRO DE JUGADOR</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data">
+                    <div class="mb-2">
+                        <label class="form-label">NOMBRE DE JUGADOR</label>
+                        <input type="text" class="form-control text-center" id="nombrej">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">EDAD</label>
+                        <input type="number" class="form-control text-center" id="edad" min="14" max="40" value="14">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">GÉNERO</label>
+                       <select class="form-select text-center" id="genero">
+                        <option value="hombre">HOMBRE</option>
+                        <option value="mujer">MUJER</option>
+                       </select>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">NÚMERO</label>
+                        <input type="number" class="form-control text-center" id="numero">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">POSICIÓN</label>
+                        <input type="text" class="form-control text-center" id="posicion">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">PAÍS</label>
+                        <input type="text" class="form-control text-center" id="pais">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">EQUIPO</label>
+                       <select class="form-select text-center" id="equipo"></select>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">FOTO</label>
+                        <input type="file" class="form-control" id="fotoj" onchange="previewJugador()"><br>
+                        <img id="fotoj-preview" src="assets/img/p.png">
+                    </div>
+                </form>                
+            </div>
+  
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="jRegistrar()">REGISTRAR
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
+                        <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5z"/>
+                        <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5zM9 1h2v4H9z"/>
+                    </svg>
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCELAR
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                    </svg>
+                </button>              
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  
+
+
     <script src="assets/js/bootstrap.bundle.js"></script>
     <script src="assets/js/sweetalert2.all.min.js"></script>
-    <script src="assets/js/moment.js"></script>
-    <script src="assets/js/moment-with-locales.js"></script>
+    <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
     <script src="assets/js/inicio.js"></script>
 </body>
 

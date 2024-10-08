@@ -16,6 +16,12 @@ img{
     margin: auto;
 }
 
+#fotoj-preview{
+    height:110px;
+    border:1px solid white;
+    border-radius:100%;
+    margin: auto;
+}
 
 .btn-primary{
 width: 140px;
